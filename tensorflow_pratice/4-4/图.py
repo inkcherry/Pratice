@@ -11,11 +11,9 @@ print(product)
 
 sess =tf.Session()
 
-print(result)
+
+
+with tf.Session() as sess:
+    result =sess.run(product)
+print(result);
 sess.close()
-
-
-#with tf.Session() as sess:
-   # result =sess.run(product)
-#print(result);
-#sess.close()

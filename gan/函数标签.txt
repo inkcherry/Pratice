@@ -1,0 +1,33 @@
+tf.layers.dense()
+dense：全连接层
+tf.layers.dense(
+    inputs,
+    units,
+    activation=None,
+    use_bias=True,
+    kernel_initializer=None,
+    bias_initializer=tf.zeros_initializer(),
+    kernel_regularizer=None,
+    bias_regularizer=None,
+    activity_regularizer=None,
+    kernel_constraint=None,
+    bias_constraint=None,
+    trainable=True,
+    name=None,
+    reuse=None
+)
+kernel_initializer: Initializer function for the weight matrix. If None(default), weights are initialized using the default initializer used by tf.get_variable.
+bias_initializer: Initializer function for the bias.
+kernel_regularizer: Regularizer function for the weight matrix.
+bias_regularizer: Regularizer function for the bias.
+activity_regularizer: Regularizer function for the output.
+kernel_constraint: An optional projection function to be applied to the kernel after being updated by an Optimizer (e.g. used to implement norm constraints or value constraints for layer weights). The function must take as input the unprojected variable and must return the projected variable (which must have the same shape). Constraints are not safe to use when doing asynchronous distributed training.
+bias_constraint: An optional projection function to be applied to the bias after being updated by an Optimizer.
+trainable: Boolean, if True also add variables to the graph collectionGraphKeys.TRAINABLE_VARIABLES (see tf.Variable).
+name: String, the name of the layer.
+reuse: Boolean, whether to reuse the weights of a previous layer by the same name.
+--------------------- 
+作者：o0haidee0o 
+来源：CSDN 
+原文：https://blog.csdn.net/o0haidee0o/article/details/80514388 
+版权声明：本文为博主原创文章，转载请附上博文链接！

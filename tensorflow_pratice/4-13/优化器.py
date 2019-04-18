@@ -37,8 +37,8 @@ loss =tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y,logits=pre
  # 使用梯度下降法
 #train_step = tf.train.GradientDescentOptimizer(0.2).minimize(loss)
 #优化器方案
+#train有很多函数
 train_step = tf.train.AdamOptimizer(1e-2).minimize(loss)
-#train_step = tf.train.AdadeltaOptimizer(1e-2).minimize(loss)
 
  
  
