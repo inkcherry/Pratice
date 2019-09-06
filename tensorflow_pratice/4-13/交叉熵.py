@@ -48,8 +48,8 @@ correct_prediction =  tf.equal(tf.argmax(y,1),tf.argmax(prediction,1))
  
  #求准确率 通过平局值求
 accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
- 
-with tf.Session() as sess:
+gpu_options = tf.GPUOptions(allow_growth=True)
+with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
     sess.run(init)
     for epoch in range(21):
         for batch in range(n_batch):
