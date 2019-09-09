@@ -30,7 +30,7 @@ init = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init)
     for epoch in range(train_epoch):
-        batchs = mnist.train.num_examples/batch_size
+        batchs = int(mnist.train.num_examples/batch_size)
         for i in range(batchs):
             cur_x,cur_y = mnist.train.next_batch(batch_size)
             sdf,cur_cost=sess.run([optimizer,loss],feed_dict={x:cur_x,y:cur_y})
