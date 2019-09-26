@@ -46,7 +46,6 @@ class NeuralNet(Model):
         super(NeuralNet,self).__init__()
         self.fc1=layers.Dense(n_hidden_1,activation=tf.nn.relu)
         self.fc2=layers.Dense(n_hidden_2,activation=tf.nn.relu)
-        self.fc2=layers.Dense(n_hidden_2,activation=tf.nn.relu)
 #        self.fc3=layers.Dense(n_hidden_3,activation=tf.nn.relu)
         self.out=layers.Dense(num_classes,activation=tf.nn.softmax)
     def call(self,x,is_training=False):
