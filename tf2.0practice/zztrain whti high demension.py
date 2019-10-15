@@ -6,14 +6,14 @@ print (tf.__version__)
 #  train a function:   f(x[]) =1/(x[1]+x[2])
 #  train a function:   f(x[]) =x[1]
 
-train_x=np.random.sample([10000,2])
+train_x=np.random.sample([10000,2,2,2])
 print (train_x)
 y=np.zeros([10000,1],float)
 
 for i in range (10000):
     # y[i]=1/(train_x[i][0]+train_x[i][1])
     # y[i]=train_x[i][0]+train_x[i][1]
-    y[i]=train_x[i][0]+train_x[i][1]
+    y[i]=train_x[i][0][0][0]+train_x[i][1][1][1]
 
 print (y)
 
@@ -21,7 +21,7 @@ print (y)
 train_data =tf.data.Dataset.from_tensor_slices((train_x,y))
 
 
-train_data = train_data.repeat().shuffle(20).batch(1).prefetch(1)
+train_data = train_data.repeat().shuffle(20).batch(5).prefetch(1)
 
 class MYModel(keras.Model):
     def __init__(self):
@@ -29,15 +29,16 @@ class MYModel(keras.Model):
         self.layer1=keras.layers.Dense(64)
         self.layer2=keras.layers.Dense(512,activation='relu')
         self.layer3=keras.layers.Dense(256,activation='relu')
-        self.layer4=keras.layers.Dense(1,activation='relu')   #res >1
+        self.layer4=keras.layers.Dense(1,activation='sigmoid')
 
 
     def call(self,input,training=False):
+        print("input shape")
+        print(tf.shape(input))
         x=self.layer1(input)
         x=self.layer2(x)
         x=self.layer3(x)
         x=self.layer4(x)
-        # x=tf.reduce_mean(x)   #？？？？
         return x
 
 
@@ -48,9 +49,8 @@ def get_loss(pred,y):
     # return tf.nn.softmax_cross_entropy_with_logits(pred,y)
     # return tf.nn.sigmoid_cross_entropy_with_logits(x,y)
 
-
 model=MYModel()
-optimizer = tf.optimizers.SGD(0.025)
+optimizer = tf.optimizers.SGD(0.1)
 #学习率不能过低！0.0
 
 def train_step(x,y):
@@ -63,7 +63,7 @@ def train_step(x,y):
 
 
 batchs=10000/50
-training_steps = 20000
+training_steps = 1
 log_steps=200
 
 print ("_____________________________________________________________")
@@ -76,7 +76,7 @@ for step, (batch_x, batch_y) in enumerate(train_data.take(training_steps), 1):
         print("loss="+str(get_loss(pred,batch_y)))
 
 
-test_x=np.random.sample([50,2])
+test_x=np.random.sample([50,2,2,2])
 print ("test----------------x-------")
 print(test_x[1])
 print(test_x[2])
