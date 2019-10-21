@@ -26,6 +26,8 @@ train_data = train_data.repeat().shuffle(20).batch(1).prefetch(1)
 class MYModel(keras.Model):
     def __init__(self):
         super(MYModel,self).__init__()
+
+
         self.layer1=keras.layers.Dense(64)
         self.layer2=keras.layers.Dense(512,activation='relu')
         self.layer3=keras.layers.Dense(256,activation='relu')

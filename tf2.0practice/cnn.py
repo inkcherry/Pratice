@@ -18,6 +18,7 @@ num_classes = 10 # total classes (0-9 digits).
 # Training parameters.
 learning_rate = 0.001
 training_steps = 200
+
 batch_size = 128
 display_step = 10
 
@@ -78,6 +79,7 @@ class ConvNet(Model):
     # Set forward pass.
     def call(self, x, is_training=False):
         x = tf.reshape(x, [-1, 28, 28, 1])
+        print(tf.shape(x))
         x = self.conv1(x)
         x = self.maxpool1(x)
         x = self.conv2(x)
